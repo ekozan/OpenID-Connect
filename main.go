@@ -16,6 +16,43 @@ import (
 type App struct {
 }
 
+//Client -> oidApplications
+type Client struct {
+	Name string
+}
+
+//Token -> oid token
+type Token struct {
+	ID           int
+	Client       string
+	User         string
+	Token        string
+	TokenID      string
+	RefreshToken string
+	Expire       string
+}
+
+//RequestContext -> need better name (extention interface for implementation of db request)
+type RequestContext interface {
+	getClients() []Client
+	getClient() Client
+	createClient(c Client)
+	deleteClient(id int)
+	getUsers()
+	getUser()
+	createUser()
+	deleteUser()
+	getTokens()
+	getToken()
+	createToken()
+	deleteToken()
+	purgeToken()
+	createCode()
+	getCode()
+	purgeCodes()
+	getConfig()
+}
+
 //openidConfiguration (discovery)
 func (a *App) openidConfiguration(rw web.ResponseWriter, r *web.Request) {
 
