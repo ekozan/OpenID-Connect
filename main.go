@@ -28,14 +28,14 @@ type Token struct {
 	User         string
 	Token        string
 	TokenID      string
-	RefreshToken string
-	Expire       string
+	RefreshToken string //Optional
+	Expire       string //Optional
 }
 
 //RequestContext -> need better name (extention interface for implementation of db request)
 type RequestContext interface {
 	getClients() []Client
-	getClient() Client
+	getClient(id int) Client
 	createClient(c Client)
 	deleteClient(id int)
 	getUsers()
@@ -43,12 +43,12 @@ type RequestContext interface {
 	createUser()
 	deleteUser()
 	getTokens()
-	getToken()
+	getToken(id string)
 	createToken()
 	deleteToken()
 	purgeToken()
 	createCode()
-	getCode()
+	getCode(id string)
 	purgeCodes()
 	getConfig()
 }
